@@ -1,20 +1,20 @@
 <xs:schema xmlns:tns="http://agat.ru/name" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://agat.ru/name" version="1.0">
 
-  <xs:element name="getCountryRequest">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element name="name" type="xs:string"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
+  <xs:element name="getCountryRequest" type="tns:getCountryRequest"/>
 
-  <xs:element name="getCountryResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element name="country" type="tns:country"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
+  <xs:element name="getCountryResponse" type="tns:getCountryResponse"/>
+
+  <xs:complexType name="getCountryRequest">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getCountryResponse">
+    <xs:sequence>
+      <xs:element name="country" type="tns:country"/>
+    </xs:sequence>
+  </xs:complexType>
 
   <xs:complexType name="country">
     <xs:sequence>

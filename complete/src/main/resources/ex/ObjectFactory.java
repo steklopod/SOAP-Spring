@@ -11,6 +11,8 @@ package agat.toxsd;
 import javax.xml.bind.annotation.XmlRegistry;
 
 
+
+
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
@@ -23,7 +25,7 @@ import javax.xml.bind.annotation.XmlRegistry;
  * type definitions, element declarations and model 
  * groups.  Factory methods for each of these are 
  * provided in this class.
- * 
+ *
  */
 @XmlRegistry
 public class ObjectFactory {
@@ -31,14 +33,14 @@ public class ObjectFactory {
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: agat.toxsd
-     * 
+     *
      */
     public ObjectFactory() {
     }
 
     /**
      * Create an instance of {@link GetCountryRequest }
-     * 
+     *
      */
     public GetCountryRequest createGetCountryRequest() {
         return new GetCountryRequest();
@@ -46,7 +48,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link GetCountryResponse }
-     * 
+     *
      */
     public GetCountryResponse createGetCountryResponse() {
         return new GetCountryResponse();
@@ -54,7 +56,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Country }
-     * 
+     *
      */
     public Country createCountry() {
         return new Country();

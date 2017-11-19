@@ -24,7 +24,10 @@ import java.io.IOException;
 @PropertySource("classpath:application.properties")
 public class WebServiceConfig extends WsConfigurerAdapter {
 
+    //НАЗВАНИЕ СЕРВИСА (конец адресной строки):
+    //////////////////////////////////////////
     private static final String SERVICE_NAME = "photo";
+    //////////////////////////////////////////
 
     @Value("${service.port.name}")
     private String PORT_NAME;
@@ -57,8 +60,7 @@ public class WebServiceConfig extends WsConfigurerAdapter {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setPortTypeName(PORT_NAME);
         wsdl11Definition.setLocationUri(LOCATION_URL);
-//        wsdl11Definition.setTargetNamespace(TARGET_NAMESPACE);
-        wsdl11Definition.setTargetNamespace("http://agat.ru/name" );
+        wsdl11Definition.setTargetNamespace(TARGET_NAMESPACE);
         wsdl11Definition.setSchema(countriesSchema);
         return wsdl11Definition;
     }
@@ -66,9 +68,6 @@ public class WebServiceConfig extends WsConfigurerAdapter {
     @Bean
     public XsdSchema countriesSchema() throws IOException {
         return new SimpleXsdSchema(
-                new ClassPathResource(
-                        "xml/" + buildProperties.getArtifact() + "_schema1.xsd"
-                ));
-//        return new SimpleXsdSchema(new ClassPathResource("xml/agat-soap_schema1.xsd"));
+                new ClassPathResource("xml/" + buildProperties.getArtifact() + "_schema1.xsd"));
     }
 }

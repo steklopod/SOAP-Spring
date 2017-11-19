@@ -3,13 +3,13 @@
   <xsd:element name="getCountry" type="tns:getCountry"/>
   <xsd:complexType name="getCountry">
     <xsd:sequence>
-      <xsd:element minOccurs="0" ref="ns0:getCountryRequest"/>
+      <xsd:element minOccurs="0" name="request" type="ns0:getCountryRequest"/>
     </xsd:sequence>
   </xsd:complexType>
   <xsd:element name="getCountryResponse" type="tns:getCountryResponse"/>
   <xsd:complexType name="getCountryResponse">
     <xsd:sequence>
-      <xsd:element minOccurs="0" ref="ns0:getCountryResponse"/>
+      <xsd:element minOccurs="0" name="return" type="ns0:getCountryResponse"/>
     </xsd:sequence>
   </xsd:complexType>
 </xsd:schema>
