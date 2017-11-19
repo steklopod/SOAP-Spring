@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="CountryEndpoint" targetNamespace="http://agat/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://agat/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+  <wsdl:types>
+<schema xmlns="http://www.w3.org/2001/XMLSchema">
+  <import namespace="http://agat/" schemaLocation="agat-soap_schema2.xsd"/>
+</schema>
+  </wsdl:types>
+  <wsdl:message name="getCountryResponse">
+    <wsdl:part name="parameters" element="tns:getCountryResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCountry">
+    <wsdl:part name="parameters" element="tns:getCountry">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="CountryEndpointPortType">
+    <wsdl:operation name="getCountry">
+      <wsdl:input name="getCountry" message="tns:getCountry">
+    </wsdl:input>
+      <wsdl:output name="getCountryResponse" message="tns:getCountryResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CountryEndpointSoapBinding" type="tns:CountryEndpointPortType">
+    <soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getCountry">
+      <soap12:operation soapAction="" style="document"/>
+      <wsdl:input name="getCountry">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getCountryResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CountryEndpoint">
+    <wsdl:port name="CountryEndpointPort" binding="tns:CountryEndpointSoapBinding">
+      <soap12:address location="http://localhost:9090/CountryEndpointPort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

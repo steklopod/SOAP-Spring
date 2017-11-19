@@ -1,0 +1,15 @@
+<xsd:schema xmlns:ns0="http://agat.ru/name" xmlns:tns="http://agat/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://agat/">
+  <xsd:import namespace="http://agat.ru/name" schemaLocation="agat-soap_schema1.xsd"/>
+  <xsd:element name="getCountry" type="tns:getCountry"/>
+  <xsd:complexType name="getCountry">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" ref="ns0:getCountryRequest"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="getCountryResponse" type="tns:getCountryResponse"/>
+  <xsd:complexType name="getCountryResponse">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" ref="ns0:getCountryResponse"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

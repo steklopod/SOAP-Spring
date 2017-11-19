@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.springframework</groupId>
+    <artifactId>agat-soap</artifactId>
+    <version>0.1.0</version>
+    <packaging>war</packaging>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.8.RELEASE</version>
+    </parent>
+
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web-services</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>wsdl4j</groupId>
+            <artifactId>wsdl4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.1.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <!--<scope>provided</scope>-->
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-tomcat -->
+        <!--<dependency>-->
+        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<artifactId>spring-boot-starter-tomcat</artifactId>-->
+        <!--</dependency>-->
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-spring-boot-starter-jaxrs</artifactId>
+            <version>3.1.11</version>
+        </dependency>
+
+        <!--БАЗА ДАННЫХ-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.tomcat</groupId>
+                    <artifactId>tomcat-jdbc</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.tomcat</groupId>
+                    <artifactId>tomcat-jdbc</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>2.4.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+        </dependency>
+
+
+    </dependencies>
+
+
+    <build>
+        <!--<resources>-->
+            <!--<resource>-->
+                <!--<directory>${project.basedir}/src/main/resources</directory>-->
+                <!--<filtering>true</filtering>-->
+                <!--<includes>-->
+                    <!--<include>*.properties</include>-->
+                <!--</includes>-->
+            <!--</resource>-->
+        <!--</resources>-->
+
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>build-info</id>
+                        <goals>
+                            <goal>build-info</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+            <!-- из XSD >>> JAVA -->
+                <!--<plugin>-->
+                <!--<groupId>org.codehaus.mojo</groupId>-->
+                <!--<artifactId>jaxb2-maven-plugin</artifactId>-->
+                <!--<version>1.6</version>-->
+                <!--<executions>-->
+                <!--<execution>-->
+                <!--<id>xjc</id>-->
+                <!--<goals>-->
+                <!--<goal>xjc</goal>-->
+                <!--</goals>-->
+                <!--</execution>-->
+                <!--</executions>-->
+                <!--&lt;!&ndash;&ndash;&gt;-->
+                <!--<configuration>-->
+                <!--<schemaDirectory>${project.basedir}/src/main/resources/</schemaDirectory>-->
+                <!--<outputDirectory>${project.basedir}/src/main/java</outputDirectory>-->
+                <!--<clearOutputDir>false</clearOutputDir>-->
+                <!--</configuration>-->
+                <!--</plugin>-->
+
+            <!--из JAVA >>> XSD-->
+                <!--<plugin>-->
+                    <!--<groupId>org.codehaus.mojo</groupId>-->
+                    <!--<artifactId>jaxb2-maven-plugin</artifactId>-->
+                    <!--<version>2.3.1</version>-->
+                    <!--<executions>-->
+                        <!--<execution>-->
+                            <!--<id>schemagen</id>-->
+                            <!--<goals>-->
+                                <!--<goal>schemagen</goal>-->
+                            <!--</goals>-->
+                        <!--</execution>-->
+                    <!--</executions>-->
+                    <!--<configuration>-->
+                        <!--<outputDirectory>src/main/resources/xml</outputDirectory>-->
+                        <!--<sources>-->
+                            <!--<source>src/main/java/agat/toxsd</source>-->
+                        <!--</sources>-->
+                    <!--</configuration>-->
+                <!--</plugin>-->
+
+            <!-- из JAVA >>> WSDL & XSD -->
+            <plugin>
+                <groupId>org.apache.cxf</groupId>
+                <artifactId>cxf-java2ws-plugin</artifactId>
+                <version>3.1.11</version>
+                <executions>
+                    <execution>
+                        <id>transport-java2wsdl</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>java2ws</goal>
+                        </goals>
+                        <configuration>
+                            <genWsdl>true</genWsdl>
+                            <className>agat.CountryEndpoint</className>
+                            <outputFile>${basedir}/target/classes/${project.artifactId}.wsdl</outputFile>
+                            <outputFile>${project.basedir}/src/main/resources/xml/${project.artifactId}.wsdl</outputFile>
+                            <soap12>true</soap12>
+                            <verbose>true</verbose>
+
+                            <argline>-createxsdimports</argline>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+
+        <!-- НАЗВАНИЕ ПРОЕКТА -->
+        <finalName>${project.artifactId}</finalName>
+        <!--<finalName>Agat-service</finalName>-->
+
+
+
+    </build>
+</project>
