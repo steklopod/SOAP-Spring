@@ -43,7 +43,9 @@ public class WebServiceConfig extends WsConfigurerAdapter {
     @Bean
     public String address() {
         String addr = "http://localhost:8080" + LOCATION_URL + "/" + SERVICE_NAME + ".wsdl";
+
         System.err.println("СЕРВИС ДОСТУПЕН ПО АДРЕССУ: " + addr);
+
         return addr;
     }
 
@@ -56,17 +58,17 @@ public class WebServiceConfig extends WsConfigurerAdapter {
     }
 
     @Bean(name = SERVICE_NAME)
-    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema countriesSchema) {
+    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema getSchema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setPortTypeName(PORT_NAME);
         wsdl11Definition.setLocationUri(LOCATION_URL);
         wsdl11Definition.setTargetNamespace(TARGET_NAMESPACE);
-        wsdl11Definition.setSchema(countriesSchema);
+        wsdl11Definition.setSchema(getSchema);
         return wsdl11Definition;
     }
 
     @Bean
-    public XsdSchema countriesSchema() throws IOException {
+    public XsdSchema getSchema() throws IOException {
         return new SimpleXsdSchema(
                 new ClassPathResource("xml/" + buildProperties.getArtifact() + "_schema1.xsd"));
     }
